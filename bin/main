@@ -72,23 +72,22 @@ def player(board)
   until game_over?(board)
     turn(board)
   end
-  if won?(board)
-    winner(board) == "X" || winner(board) == "O"
-    puts "Congrats! #{winner(board)}"
-  elsif draw?(board)
-    puts "Draw"
-  end 
+  #if won?(board)
+  #  winner(board) == "X" || winner(board) == "O"
+  #  puts "Congrats! #{winner(board)}"
+  #elsif draw?(board)
+  #  puts "Draw"
+  #end 
 end
 
 # define the turn - checks what happens in each turn
 def turn(board)
+  p "New Turn"
   puts "Type 1 to 9: "
   user_input = gets.strip
   index = input_to_index(user_input)
   if valid_move?(board, index)
     move(board, index, current_player(board))
-    display_board(board)
-    turn(board)
   end
   display_board(board)
 end
@@ -96,6 +95,7 @@ end
 # winning condition
 def won?(board)
   WIN_CONDITION.each do |win_comb|
+
     win_index_1 = win_comb[0]
     win_index_2 = win_comb[1]
     win_index_3 = win_comb[2]
@@ -103,9 +103,15 @@ def won?(board)
     position_1 = board[win_index_1]
     position_2 = board[win_index_2]
     position_3 = board[win_index_3]
-    
-    position_1 == position_2 && position_2 && position_3 && position_taken?(board, win_index_1)
+
+    if position_1 == position_2 && 
+       position_1 == position_3 && 
+       position_taken?(board, win_index_1)
+      p "one more turn"
+      return true
+    end
   end
+  return false
 end
 
 # Draw - board is full and without a winner
@@ -137,4 +143,4 @@ def winner(board)
   end
 end
 
-turn(board)
+player(board)
