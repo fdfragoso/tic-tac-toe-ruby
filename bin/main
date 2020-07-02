@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
-puts "Hello Welcome to TIC TAC TOE Game"
-puts "Player 1 please enter your name"
+puts 'Hello Welcome to TIC TAC TOE Game'
+puts 'Player 1 please enter your name'
 player_1_name = gets.chomp
-puts "Player 2 please enter your name"
+puts 'Player 2 please enter your name'
 player_2_name = gets.chomp
 puts "#{player_1_name} is 'X' and #{player_2_name} is 'O'"
 puts " 1 | 2 | 3 \n --------- \n 4 | 5 | 6 \n --------- \n 7 | 8 | 9"
 puts "#{player_1_name} choose a number on the board (1-9)"
-#if number is (1..9), replace number with X, else ask for number again
+# if number is (1..9), replace number with X, else ask for number again
 puts " 1 | 2 | 3 \n --------- \n 4 | 5 | 6 \n --------- \n 7 | 8 | 9"
 puts "#{player_2_name} choose a number on the board (1-9)"
-#if number is (1..9)-num1, replace number with O, else ask for number again
-#repeat until player wins or draws
+# if number is (1..9)-num1, replace number with O, else ask for number again
+# repeat until player wins or draws
 puts "It's a draw!!!"
