@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
 WIN_CONDITION = [
  [0, 1, 2],
@@ -69,11 +69,15 @@ end
 
 # define the player - our game loop
 def player(board)
-  counter = 0
-  until counter == 9
+  until game_over?(board)
     turn(board)
-    counter += 1
   end
+  if won?(board)
+    winner(board) == "X" || winner(board) == "O"
+    puts "Congrats! #{winner(board)}"
+  elsif draw?(board)
+    puts "Draw"
+  end 
 end
 
 # define the turn - checks what happens in each turn
@@ -83,13 +87,14 @@ def turn(board)
   index = input_to_index(user_input)
   if valid_move?(board, index)
     move(board, index, current_player(board))
+    display_board(board)
     turn(board)
   end
   display_board(board)
 end
 
 # winning condition
-def won?
+def won?(board)
   WIN_CONDITION.each do |win_comb|
     win_index_1 = win_comb[0]
     win_index_2 = win_comb[1]
@@ -104,7 +109,7 @@ def won?
 end
 
 # Draw - board is full and without a winner
-def full?
+def full?(board)
   board.all? { |i| i == "X" || i == "O" }
 end
 
@@ -117,3 +122,19 @@ def draw?(board)
     return false
   end
 end
+
+# check if it is game over
+def game_over?(board)
+  if draw?(board) || won?(board) || full?(board)
+    return true
+  end
+end
+
+# check if there is a winner
+def winner(board)
+  if won?(board)
+    return board[won?(board)[0]]
+  end
+end
+
+turn(board)
