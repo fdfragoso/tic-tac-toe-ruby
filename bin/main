@@ -44,7 +44,7 @@ end
 def count_turns(board)
   counter = 0
   board.each do |spaces|
-    if.spaces == "X" || spaces == "O"
+    if spaces == "X" || spaces == "O"
         counter += 1
     end
   end
@@ -56,10 +56,26 @@ def current_player(board)
   count_turns(board) % 2 == 0 ? "X" : "O"
 end
 
+# define the player - our game loop
+def player(board)
+  counter = 0
+  until counter == 9
+    turn(board)
+    counter += 1
+  end
+end
+
+# define the turn - checks what happens in each turn
+def turn(board)
+  puts "Type 1 to 9: "
+  user_input = gets.strip
+  index = input_to_index(user_input)
+  if valid_move?(board, index)
+    move(board, index, current_player(board))
+    turn(board)
+  end
+  display_board(board)
+end
 
 # game main loop - or something similar
-display_board(board);
-valid_move?(board, index);
-position_taken?(board, index);
-input_to_index(user_input);
-move(board, index, first_player = "X")
+turn(board)
