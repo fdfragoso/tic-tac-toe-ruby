@@ -2,6 +2,17 @@
 
 board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+WIN_CONDITION = [
+ [0, 1, 2],
+ [3, 4, 5],
+ [6, 7, 8],
+ [0, 3, 6],
+ [1, 4, 7],
+ [2, 5, 8],
+ [0, 4, 8],
+ [6, 4, 2]
+]
+
 # DISPLAY THE BOARD
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -77,5 +88,32 @@ def turn(board)
   display_board(board)
 end
 
-# game main loop - or something similar
-turn(board)
+# winning condition
+def won?
+  WIN_CONDITION.each do |win_comb|
+    win_index_1 = win_comb[0]
+    win_index_2 = win_comb[1]
+    win_index_3 = win_comb[2]
+
+    position_1 = board[win_index_1]
+    position_2 = board[win_index_2]
+    position_3 = board[win_index_3]
+    
+    position_1 == position_2 && position_2 && position_3 && position_taken?(board, win_index_1)
+  end
+end
+
+# Draw - board is full and without a winner
+def full?
+  board.all? { |i| i == "X" || i == "O" }
+end
+
+def draw?(board)
+  if !won?(board) && full?(board)
+    return true
+  elsif !won?(board) && !full?(board)
+    return false
+  else won?(board)
+    return false
+  end
+end
