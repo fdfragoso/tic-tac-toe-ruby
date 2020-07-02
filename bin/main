@@ -1,2 +1,65 @@
 #!/usr/bin/env ruby
-puts "Hello World!"
+
+board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# DISPLAY THE BOARD
+def display_board(board)
+  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+  puts "-----------"
+  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+  puts "-----------"
+  puts " #{board[6]} | #{board[7]} | #{board[8]} "
+end
+
+# USER INPUT TO THE ARRAY POSITION
+def input_to_index(user_input)
+  user_input.to_i - 1
+end
+
+# USER MOVEMENT - X or O to a certain position
+def move(board, index, player) 
+  board[index] = player
+end
+
+# THE POSITION IS ALREADY TAKEN
+def position_taken?(board, index)
+  if((board[index] == " ") || 
+     (board[index] == "") ||
+     (board[index] == nil))
+    return false
+  else 
+    return true
+  end
+end
+
+# VALIDATE THE MOVE
+def valid_move?(board, index)
+  # THE PLAYER INPUT IS BETWEEN 0 AND 8 AND THE POSITION IS NOT TAKEN
+  if index.between?(0, 8) && !position_taken?(board, index)
+    return true
+  end
+end
+
+# KEEP TRACK OF THE TURNS
+def count_turns(board)
+  counter = 0
+  board.each do |spaces|
+    if.spaces == "X" || spaces == "O"
+        counter += 1
+    end
+  end
+  counter
+end
+
+# DEFINE THE CURRENT PLAYER
+def current_player(board)
+  count_turns(board) % 2 == 0 ? "X" : "O"
+end
+
+
+# game main loop - or something similar
+display_board(board);
+valid_move?(board, index);
+position_taken?(board, index);
+input_to_index(user_input);
+move(board, index, first_player = "X")
