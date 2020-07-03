@@ -1,21 +1,18 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 board = (1..9).to_a
 
 WIN_CONDITION = [
- [0, 1, 2],
- [3, 4, 5],
- [6, 7, 8],
- [0, 3, 6],
- [1, 4, 7],
- [2, 5, 8],
- [0, 4, 8],
- [6, 4, 2]
-]
-
-class Winner
-  attr_accessor :name
-end
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [6, 4, 2]
+].freeze
 
 # DISPLAY THE BOARD
 def display_board(board)
@@ -25,29 +22,6 @@ def display_board(board)
   puts '-----------'
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
-# # DISPLAY THE BOARD
-# def display_board(board)
-  
-#   boardNumbers = board
-#   counter = 0
-#   display = 1
-
-#   boardNumbers.each do |item|
-#     if((item == " ") || 
-#       (item == "") ||
-#       (item == nil))
-#       boardNumbers[counter] = display.to_s
-#     end
-#     counter += 1
-#     display += 1
-#   end
-
-#   puts " #{boardNumbers[0]} | #{boardNumbers[1]} | #{boardNumbers[2]} "
-#   puts "-----------"
-#   puts " #{boardNumbers[3]} | #{boardNumbers[4]} | #{boardNumbers[5]} "
-#   puts "-----------"
-#   puts " #{boardNumbers[6]} | #{boardNumbers[7]} | #{boardNumbers[8]} "
-# end
 
 # USER INPUT TO THE ARRAY POSITION
 def input_to_index(user_input)
@@ -55,65 +29,59 @@ def input_to_index(user_input)
 end
 
 # USER MOVEMENT - X or O to a certain position
-def move(board, index, player) 
+def move(board, index, player)
   board[index] = player
 end
 
 # THE POSITION IS ALREADY TAKEN
 def position_taken?(board, index)
   if ((board[index]).is_a? Integer) || board[index].nil?
-    return false
-  else 
-    return true
+    false
+  else
+    true
   end
 end
 
 # VALIDATE THE MOVE
 def valid_move?(board, index)
   # THE PLAYER INPUT IS BETWEEN 0 AND 8 AND THE POSITION IS NOT TAKEN
-  if index.between?(0, 8) && !position_taken?(board, index)
-    return true
-  end
+  return true if index.between?(0, 8) && !position_taken?(board, index)
 end
 
 # KEEP TRACK OF THE TURNS
 def count_turns(board)
   counter = 0
   board.each do |spaces|
-    if spaces == "X" || spaces == "O"
-        counter += 1
-    end
+    counter += 1 if spaces.include?('X', 'O')
   end
   counter
 end
 
 # DEFINE THE CURRENT PLAYER
 def current_player(board)
-  count_turns(board) % 2 == 0 ? "X" : "O"
+  count_turns(board).even? ? 'X' : 'O'
 end
 
 # define the player - our game loop
 def player(board)
-  until game_over?(board)
-    turn(board)
-  end
+  turn(board) until game_over?(board)
   if won?(board)
-    winner(board) == "X" || winner(board) == "O"
+    winner(board) == 'X' || winner(board) == 'O'
     puts "Congrats! #{winner(board)}"
   elsif draw?(board)
-    puts "Draw"
-  end 
+    puts 'Draw'
+  end
 end
 
 # define the turn - checks what happens in each turn
 def turn(board)
-  puts "Type 1 to 9: "
+  puts 'Type 1 to 9: '
   user_input = gets.strip
   index = input_to_index(user_input)
   if valid_move?(board, index)
     move(board, index, current_player(board))
   else
-    puts "Not a valid move!!! Try again"
+    puts 'Not a valid move!!! Try again'
   end
   display_board(board)
 end
@@ -123,12 +91,9 @@ def won?(board)
   comb = []
   WIN_CONDITION.each do |win_comb|
     comb = [board[win_comb[0]], board[win_comb[1]], board[win_comb[2]]]
-    if comb.all? { |x| x == 'O' }    
-      return true
-    elsif comb.all? { |x| x == 'X' }      
-      return true
-    end
-  end  
+    return true if comb.all? { |x| x == 'O' }
+    return true if comb.all? { |x| x == 'X' }
+  end
   false
 end
 
@@ -137,42 +102,34 @@ def who_won(board)
   comb = []
   WIN_CONDITION.each do |win_comb|
     comb = [board[win_comb[0]], board[win_comb[1]], board[win_comb[2]]]
-    if comb.all? { |x| x == 'O' }    
-      return "O"
-    elsif comb.all? { |x| x == 'X' }      
-      return "X"
-    end
-  end  
-  return ""
+    return 'O' if comb.all? { |x| x == 'O' }
+    return 'X' if comb.all? { |x| x == 'X' }
+  end
 end
 
 # Draw - board is full and without a winner
 def full?(board)
-  board.all? { |i| i == "X" || i == "O" }
+  board.all? { |i| i.include?('X', 'O') }
 end
 
 def draw?(board)
   if !won?(board) && full?(board)
-    return true
+    true
   elsif !won?(board) && !full?(board)
-    return false
-  else won?(board)
-    return false
+    false
+  elsif won?(board)
+    false
   end
 end
 
 # check if it is game over
 def game_over?(board)
-  if draw?(board) || won?(board) || full?(board)
-    return true
-  end
+  return true if draw?(board) || won?(board) || full?(board)
 end
 
 # check if there is a winner
 def winner(board)
-  if won?(board)
-    return who_won(board)
-  end
+  return who_won(board) if won?(board)
 end
 
 player(board)
