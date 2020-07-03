@@ -92,26 +92,19 @@ def turn(board)
   display_board(board)
 end
 
+
 # winning condition
 def won?(board)
+  comb = []
   WIN_CONDITION.each do |win_comb|
-
-    win_index_1 = win_comb[0]
-    win_index_2 = win_comb[1]
-    win_index_3 = win_comb[2]
-
-    position_1 = board[win_index_1]
-    position_2 = board[win_index_2]
-    position_3 = board[win_index_3]
-
-    if position_1 == position_2 && 
-       position_1 == position_3 && 
-       position_taken?(board, win_index_1)
-      p "one more turn"
+    comb = [board[win_comb[0]], board[win_comb[1]], board[win_comb[2]]]
+    if comb.all? { |x| x == 'O' }    
+      return true
+    elsif comb.all? { |x| x == 'X' }      
       return true
     end
-  end
-  return false
+  end  
+  false
 end
 
 # Draw - board is full and without a winner
