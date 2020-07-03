@@ -1,16 +1,111 @@
 #!/usr/bin/env ruby
 
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+WIN_CONDITION = [
+ [0, 1, 2],
+ [3, 4, 5],
+ [6, 7, 8],
+ [0, 3, 6],
+ [1, 4, 7],
+ [2, 5, 8],
+ [0, 4, 8],
+ [6, 4, 2]
+]
 puts 'Hello Welcome to TIC TAC TOE Game'
 puts 'Player 1 please enter your name'
 player_1_name = gets.chomp
 puts 'Player 2 please enter your name'
 player_2_name = gets.chomp
 puts "#{player_1_name} is 'X' and #{player_2_name} is 'O'"
-puts " 1 | 2 | 3 \n --------- \n 4 | 5 | 6 \n --------- \n 7 | 8 | 9"
-puts "#{player_1_name} choose a number on the board (1-9)"
-# if number is (1..9), replace number with X, else ask for number again
-puts " 1 | 2 | 3 \n --------- \n 4 | 5 | 6 \n --------- \n 7 | 8 | 9"
-puts "#{player_2_name} choose a number on the board (1-9)"
-# if number is (1..9)-num1, replace number with O, else ask for number again
-# repeat until player wins or draws
-puts "It's a draw!!!"
+
+# DISPLAY THE BOARD
+def display_board(board)
+  puts " 1 | 2 | 3 \n --------- \n 4 | 5 | 6 \n --------- \n 7 | 8 | 9"
+end
+
+# DEFINE THE CURRENT PLAYER
+def current_player(board)
+end
+
+# define the player - our game loop
+def player(board)
+  until game_over?(board)
+    turn(board)
+  end
+end
+
+# define the turn - checks what happens in each turn
+def turn(board)
+  p "New Turn"
+  puts "Type 1 to 9: "
+  user_input 
+  index = input_to_index(user_input)
+  if valid_move?
+    play
+  end
+  display_board(board)
+end
+
+# USER INPUT TO THE ARRAY POSITION
+def input_to_index(user_input)
+  user_input.to_i - 1
+end
+
+# USER MOVEMENT - X or O to a certain position
+def move(board, index, player) 
+  board[index] = player
+end
+
+# THE POSITION IS ALREADY TAKEN
+def position_taken?(board, index)
+  if already taken
+    return false
+  else 
+    return true
+  end
+end
+
+# VALIDATE THE MOVE
+def valid_move?(board, index)
+  # THE PLAYER INPUT IS BETWEEN 0 AND 8 AND THE POSITION IS NOT TAKEN
+  if between(0, 8) && !position_taken?
+    return true
+  end
+end
+
+# KEEP TRACK OF THE TURNS
+def count_turns(board)
+end
+
+# winning condition
+def won?(board)
+  if equal WIN_CONDITION
+      return true
+    end
+  end
+  return false
+end
+
+# Draw - board is full and without a winner
+def full?(board)
+  board.all? { |i| i == "X" || i == "O" }
+end
+
+def draw?(board)
+
+end
+
+# check if it is game over
+def game_over?(board)
+  if draw?(board) || won?(board) || full?(board)
+    return true
+  end
+end
+
+# check if there is a winner
+def winner(board)
+  if won?(board)
+  end
+end
+
