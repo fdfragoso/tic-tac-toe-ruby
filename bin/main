@@ -19,11 +19,26 @@ end
 
 # DISPLAY THE BOARD
 def display_board(board)
-  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+  
+  boardNumbers = board
+  counter = 0
+  display = 1
+
+  boardNumbers.each do |item|
+    if((item == " ") || 
+      (item == "") ||
+      (item == nil))
+      boardNumbers[counter] = display.to_s
+    end
+    counter += 1
+    display += 1
+  end
+
+  puts " #{boardNumbers[0]} | #{boardNumbers[1]} | #{boardNumbers[2]} "
   puts "-----------"
-  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+  puts " #{boardNumbers[3]} | #{boardNumbers[4]} | #{boardNumbers[5]} "
   puts "-----------"
-  puts " #{board[6]} | #{board[7]} | #{board[8]} "
+  puts " #{boardNumbers[6]} | #{boardNumbers[7]} | #{boardNumbers[8]} "
 end
 
 # USER INPUT TO THE ARRAY POSITION
@@ -95,7 +110,6 @@ def turn(board)
   display_board(board)
 end
 
-
 # winning condition
 def won?(board)
   comb = []
@@ -108,6 +122,20 @@ def won?(board)
     end
   end  
   false
+end
+
+# Checks who won the game X or O
+def who_won(board)
+  comb = []
+  WIN_CONDITION.each do |win_comb|
+    comb = [board[win_comb[0]], board[win_comb[1]], board[win_comb[2]]]
+    if comb.all? { |x| x == 'O' }    
+      return "O"
+    elsif comb.all? { |x| x == 'X' }      
+      return "X"
+    end
+  end  
+  return ""
 end
 
 # Draw - board is full and without a winner
@@ -135,11 +163,8 @@ end
 # check if there is a winner
 def winner(board)
   if won?(board)
-    return board[won?(board)]
+    return who_won(board)
   end
 end
 
-winner = Winner.new
-winner.name = "X"
-p winner.name
 player(board)
