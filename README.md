@@ -38,7 +38,7 @@
 
 [Live Demo](https://repl.it/join/tyeotsob-felipedacal)
 
-### 🛠 How to Play <a name = "installing"></a>
+### 🛠 Installing <a name = "installing"></a>
 
 ```
 - Clone or download this repository;
@@ -48,7 +48,7 @@
 
 ```
 
-### 🛠 Installing <a name = "play"></a>
+### 🛠 How to Play <a name = "play"></a>
 
 ```
 - The first player will control the X pieces, the second player the O pieces
