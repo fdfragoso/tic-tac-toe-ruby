@@ -13,6 +13,10 @@ WIN_CONDITION = [
  [6, 4, 2]
 ]
 
+class Winner
+  attr_accessor :name
+end
+
 # DISPLAY THE BOARD
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -72,17 +76,16 @@ def player(board)
   until game_over?(board)
     turn(board)
   end
-  #if won?(board)
-  #  winner(board) == "X" || winner(board) == "O"
-  #  puts "Congrats! #{winner(board)}"
-  #elsif draw?(board)
-  #  puts "Draw"
-  #end 
+  if won?(board)
+    winner(board) == "X" || winner(board) == "O"
+    puts "Congrats! #{winner(board)}"
+  elsif draw?(board)
+    puts "Draw"
+  end 
 end
 
 # define the turn - checks what happens in each turn
 def turn(board)
-  p "New Turn"
   puts "Type 1 to 9: "
   user_input = gets.strip
   index = input_to_index(user_input)
@@ -132,8 +135,11 @@ end
 # check if there is a winner
 def winner(board)
   if won?(board)
-    return board[won?(board)[0]]
+    return board[won?(board)]
   end
 end
 
+winner = Winner.new
+winner.name = "X"
+p winner.name
 player(board)
