@@ -81,8 +81,7 @@ end
 # winning condition
 def won?(board)
   if equal WIN_CONDITION
-      return true
-    end
+    return true
   end
   return false
 end
