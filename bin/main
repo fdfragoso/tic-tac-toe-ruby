@@ -52,7 +52,7 @@ end
 def count_turns(board)
   counter = 0
   board.each do |spaces|
-    counter += 1 if spaces.include?('X', 'O')
+    counter += 1 if spaces.to_s.include?('X') || spaces.to_s.include?('O')
   end
   counter
 end
@@ -109,7 +109,7 @@ end
 
 # Draw - board is full and without a winner
 def full?(board)
-  board.all? { |i| i.include?('X', 'O') }
+  board.all? { |i| i.to_s.include?('X') || i.to_s.include?('O') }
 end
 
 def draw?(board)
