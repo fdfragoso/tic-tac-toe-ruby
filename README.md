@@ -28,6 +28,8 @@
 ## 🧐 About <a name = "about"></a>
 <h3 align="center"> This is an assigment for Microverse course. The goal of this project is to create a Tic Tac Toe game using the programming language Ruby. All the game is run inside the console. The player play using the keyboard. Each number (1 to 9) correspond to a position in the board. When one of the player reach of a winning possibility (3 consecutive symbols - X or O ) the system says who was the winner.</h3>
 
+![screenshot](../lib/img/execution.png)
+
 ---
 
 ## 🔧 Built with<a name = "built_using"></a>
@@ -39,6 +41,12 @@
 [Live Demo](https://repl.it/join/tyeotsob-felipedacal)
 
 ### 🛠 Installing <a name = "installing"></a>
+
+### Pre-requisites
+
+- Ruby installed on local machine. Please go to [this](https://www.ruby-lang.org/en/documentation/installation/) link if you need to install it.
+
+### Usage
 
 ```
 - Clone or download this repository;
@@ -60,6 +68,30 @@
 
 - Good game and have fun!!!
 
+```
+
+### Rules
+
+```
+RULES FOR TIC-TAC-TOE
+The game is played on a grid that's 3 squares by 3 squares.
+
+You are X, your friend is O. Players take turns putting their marks in empty squares.
+
+The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner.
+
+When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.
+
+In this virtual implementation, you and your friend can place a mark by selecting from the numbers 1 to 9 when prompted. This is illustrated below:
+
+| (1) | (2) | (3) |
+| (4) | (5) | (6) |
+| (7) | (8) | (9) |
+A winning position would like the image below at the end. As soon as someone gets three of their marks in a row, the game ends.
+| O | X | O |
+| X | X | X | --- Player 'X' wins with this row!
+| O | O | O |
+For a detailed explanation, please have a look at this guide.
 ```
 
 ## ✒️  Autor <a name = "author"></a>
