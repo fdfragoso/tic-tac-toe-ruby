@@ -1,6 +1,7 @@
-#!/usr/bin/env ruby
-# frozen_string_literal: true
+# A file which has a shebang line as its first line is
+# granted execute permission.
 
+#!/usr/bin/env ruby
 board = (1..9).to_a
 
 WIN_CONDITION = [
