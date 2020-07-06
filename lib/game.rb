@@ -1,3 +1,5 @@
+require_relative 'board.rb'
+
 class Game
   WIN_CONDITION = [
     [0, 1, 2],
@@ -10,15 +12,18 @@ class Game
     [6, 4, 2]
   ].freeze
 
-  # define the player - our game loop
-  def player(board)
-    turn(board) until game_over?(board)
-    if won?(board)
-      winner(board) == 'X' || winner(board) == 'O'
-      puts "Congrats! #{winner(board)}"
-    elsif draw?(board)
-      puts 'Draw'
+  objBoard = Board.new()
+  board = objBoard.get_board()
+
+  # define the turn - checks what happens in each turn
+  def turn(user_input, board, objBoard)
+    index = objBoard.input_to_index(user_input)
+    if objBoard.valid_move?(board, index)
+      objBoard.move(board, index, current_player(board))
+      else
+        return ['Not a valid move!!! Try again']
     end
+    return board
   end
 
   # KEEP TRACK OF THE TURNS
@@ -52,8 +57,8 @@ class Game
   end
 
   # check if it is game over
-  def game_over?(board)
-    return true if draw?(board) || won?(board) || full?(board)
+  def game_over?(board, objBoard)
+    return true if draw?(board, objBoard) || won?(board) || objBoard.full?(board)
   end
 
   # check if there is a winner
@@ -65,22 +70,9 @@ class Game
   def current_player(board)
     count_turns(board).even? ? 'X' : 'O'
   end
-    
-  # define the turn - checks what happens in each turn
-  def turn(board)
-    puts 'Type 1 to 9: '
-    user_input = gets.strip
-    index = objBoard.input_to_index(user_input)
-    if objBoard.valid_move?(board, index)
-      objBoard.move(board, index, current_player(board))
-    else
-      puts 'Not a valid move!!! Try again'
-    end
-    display_board(board)
-  end
 
   # returns if is a draw
-  def draw?(board)
+  def draw?(board, objBoard)
     if !won?(board) && objBoard.full?(board)
       true
     elsif !won?(board) && !objBoard.full?(board)

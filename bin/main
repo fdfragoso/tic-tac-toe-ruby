@@ -15,11 +15,24 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
+game_on = true
+
+# initial instructions for player
+
 display_board(board)
 
+while !objGame.game_over?(board, objBoard)
+  # loop for each move
+  puts 'Type 1 to 9'
+  user_input = gets.strip
 
+  puts display_board(objGame.turn(user_input, board, objBoard))
 
-#display_board()
-
-#puts objBoard.display_board() 
-#player(board)
+  if objGame.won?(board)
+    objGame.winner(board) == 'X' || objGame.winner(board) == 'O'
+    puts "Congrats! #{objGame.winner(board)}"
+    game_on = false
+  elsif objGame.draw?(board, objBoard)
+    puts "Draw!"
+  end
+end

@@ -8,10 +8,6 @@ class Board
   def get_board
     return @board
   end
-  # DISPLAY THE BOARD
-  def display_board(board)
-    return board
-  end
 
   # VALIDATE THE MOVE
   def valid_move?(board, index)
@@ -40,6 +36,6 @@ class Board
 
   # Draw - board is full and without a winner
   def full?(board)
-      board.all? { |i| i.to_s.include?('X') || i.to_s.include?('O') }
+    board.all? { |i| i.to_s.include?('X') || i.to_s.include?('O') }
   end
 end
