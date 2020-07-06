@@ -2,10 +2,10 @@
 require_relative '../lib/game.rb'
 require_relative '../lib/board.rb'
 
-objGame = Game.new()
-objBoard = Board.new()
+obj_game = Game.new
+obj_board = Board.new
 
-board = objBoard.get_board()
+board = obj_board.board
 
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
@@ -15,24 +15,24 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-game_on = true
+# game_on = true
 
 # initial instructions for player
 
 display_board(board)
 
-while !objGame.game_over?(board, objBoard)
+until obj_game.game_over?(board, obj_board)
   # loop for each move
   puts 'Type 1 to 9'
   user_input = gets.strip
 
-  puts display_board(objGame.turn(user_input, board, objBoard))
+  puts display_board(obj_game.turn(user_input, board, obj_board))
 
-  if objGame.won?(board)
-    objGame.winner(board) == 'X' || objGame.winner(board) == 'O'
-    puts "Congrats! #{objGame.winner(board)}"
-    game_on = false
-  elsif objGame.draw?(board, objBoard)
-    puts "Draw!"
+  if obj_game.won?(board)
+    obj_game.winner(board) == 'X' || obj_game.winner(board) == 'O'
+    puts "Congrats! #{obj_game.winner(board)}"
+    # game_on = false
+  elsif obj_game.draw?(board, obj_board)
+    puts 'Draw!'
   end
 end

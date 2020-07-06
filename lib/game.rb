@@ -12,18 +12,18 @@ class Game
     [6, 4, 2]
   ].freeze
 
-  objBoard = Board.new()
-  board = objBoard.get_board()
+  obj_board = Board.new
+  # board = obj_board.get_board
+  obj_board.board
+  
 
   # define the turn - checks what happens in each turn
-  def turn(user_input, board, objBoard)
-    index = objBoard.input_to_index(user_input)
-    if objBoard.valid_move?(board, index)
-      objBoard.move(board, index, current_player(board))
-      else
-        return ['Not a valid move!!! Try again']
-    end
-    return board
+  def turn(user_input, board, obj_board)
+    index = obj_board.input_to_index(user_input)
+    obj_board.move(board, index, current_player(board)) if obj_board.valid_move?(board, index)
+    return 'Not a valid move!!! Try again.'
+
+    board
   end
 
   # KEEP TRACK OF THE TURNS
@@ -45,7 +45,7 @@ class Game
     end
     false
   end
-    
+
   # Checks who won the game X or O
   def who_won(board)
     comb = []
@@ -57,8 +57,8 @@ class Game
   end
 
   # check if it is game over
-  def game_over?(board, objBoard)
-    return true if draw?(board, objBoard) || won?(board) || objBoard.full?(board)
+  def game_over?(board, obj_board)
+    return true if draw?(board, obj_board) || won?(board) || obj_board.full?(board)
   end
 
   # check if there is a winner
@@ -72,10 +72,10 @@ class Game
   end
 
   # returns if is a draw
-  def draw?(board, objBoard)
-    if !won?(board) && objBoard.full?(board)
+  def draw?(board, obj_board)
+    if !won?(board) && obj_board.full?(board)
       true
-    elsif !won?(board) && !objBoard.full?(board)
+    elsif !won?(board) && !obj_board.full?(board)
       false
     elsif won?(board)
       false

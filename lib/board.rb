@@ -1,12 +1,8 @@
 class Board
   attr_accessor :board
-  
+
   def initialize
     @board = (1..9).to_a
-  end
-
-  def get_board
-    return @board
   end
 
   # VALIDATE THE MOVE
@@ -19,7 +15,7 @@ class Board
   def move(board, index, player)
     board[index] = player
   end
-    
+
   # THE POSITION IS ALREADY TAKEN
   def position_taken?(board, index)
     if ((board[index]).is_a? Integer) || board[index].nil?
