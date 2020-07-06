@@ -1,5 +1,4 @@
 require_relative 'board.rb'
-
 class Game
   WIN_CONDITION = [
     [0, 1, 2],
@@ -15,15 +14,20 @@ class Game
   obj_board = Board.new
   # board = obj_board.get_board
   obj_board.board
-  
 
   # define the turn - checks what happens in each turn
   def turn(user_input, board, obj_board)
     index = obj_board.input_to_index(user_input)
-    obj_board.move(board, index, current_player(board)) if obj_board.valid_move?(board, index)
-    return 'Not a valid move!!! Try again.'
-
-    board
+    # rubocop: disable Style/GuardClause
+    if obj_board.valid_move?(board, index)
+      obj_board.move(board, index, current_player(board))
+    else
+      return ['Not a valid move!!! Try again']
+    end
+    # rubocop: disable Style/RedundantReturn
+    return board
+    # rubocop: enable Style/RedundantReturn
+    # rubocop: enable Style/GuardClause
   end
 
   # KEEP TRACK OF THE TURNS
