@@ -24,9 +24,7 @@ class Game
     else
       return ['Not a valid move!!! Try again']
     end
-    # rubocop: disable Style/RedundantReturn
-    return board
-    # rubocop: enable Style/RedundantReturn
+    board
     # rubocop: enable Style/GuardClause
   end
 
