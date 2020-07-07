@@ -19,8 +19,6 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-# game_on = true
-
 # initial instructions for player
 
 display_board(board)
