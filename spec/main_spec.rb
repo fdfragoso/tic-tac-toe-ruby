@@ -1,5 +1,5 @@
-require_relative '../bin/main.rb'
 require_relative '../lib/game.rb'
+require_relative '../lib/board.rb'
 
 describe Game do
   let(:board) { [1, 2, 3, 'X', 'O', 6, 'X', 'O', 9] }
