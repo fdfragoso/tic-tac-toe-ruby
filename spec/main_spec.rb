@@ -82,5 +82,25 @@ describe Game do
       expect(obj_game.draw?(board, obj_board)).to be false
     end
   end
-end 
+end
+
+describe Board do
+  let(:board) { [1, 2, 3, 'X', 'O', 6, 'X', 'O', 9] }
+
+  obj_board = Board.new
+
+  describe '#valid_move' do
+    it 'Return true if index is between 0 and 8 and position is not taken' do
+      expect(obj_board.valid_move?(board, 8)).to be true
+    end
+
+    it 'Return nil if index is not between 0 and 8' do
+      expect(obj_board.valid_move?(board, 10)).to be nil
+    end
+
+    it 'Return nil if position is taken' do
+      expect(obj_board.valid_move?(board, 3)).to be nil
+    end
+  end
+end
   
