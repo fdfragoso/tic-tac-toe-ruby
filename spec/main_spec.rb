@@ -68,5 +68,19 @@ describe Game do
       expect(obj_game.game_over?(board, obj_board)).to be nil
     end
   end
+
+  describe '#draw?' do
+    it 'Return true if is draw' do
+      expect(obj_game.draw?(win2, obj_board)).to be true
+    end
+
+    it 'Return false if there is a winner' do
+      expect(obj_game.draw?(win, obj_board)).to be false
+    end
+
+    it 'Return false if there is no winner and the board isnt full' do
+      expect(obj_game.draw?(board, obj_board)).to be false
+    end
+  end
 end 
   
