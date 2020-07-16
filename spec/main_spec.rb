@@ -86,6 +86,8 @@ end
 
 describe Board do
   let(:board) { [1, 2, 3, 'X', 'O', 6, 'X', 'O', 9] }
+  let(:move) { ['X', 2, 3, 'X', 'O', 6, 'X', 'O', 9] }
+  let(:win2) { ['X', 'O', 'X', 'O', 'X', 'X', 'O', 'X', 'O'] }
 
   obj_board = Board.new
 
@@ -111,14 +113,24 @@ describe Board do
     it 'Return true if the position is taken' do
       expect(obj_board.position_taken?(board, 7)).to be true
     end
-end
+  end
 
-describe '#input_to_index' do
+  describe '#input_to_index' do
     it 'Return the move index is between 0-8' do
       expect(obj_board.input_to_index(2)).to eq(1)
     end
+  end
 
-  
-end
+  describe '#full?' do
+    it 'Return true if the board is full and without a winner' do
+      expect(obj_board.full?(win2)).to be true
+    end
+  end
+
+  describe '#move?' do
+    it 'Make the move' do
+      expect(obj_board.move(board, 0, 'X')).to eq("X")
+    end
+  end
 end
   
