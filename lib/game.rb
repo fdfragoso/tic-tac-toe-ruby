@@ -31,7 +31,7 @@ class Game
   # KEEP TRACK OF THE TURNS
   def count_turns(board)
     counter = 0
-    board.each do |spaces| 
+    board.each do |spaces|
       counter += 1 if spaces.to_s.include?('X') || spaces.to_s.include?('O')
     end
     counter
