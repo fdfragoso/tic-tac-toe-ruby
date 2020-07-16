@@ -31,7 +31,7 @@ class Game
   # KEEP TRACK OF THE TURNS
   def count_turns(board)
     counter = 0
-    board.each do |spaces|
+    board.each do |spaces| 
       counter += 1 if spaces.to_s.include?('X') || spaces.to_s.include?('O')
     end
     counter
@@ -70,6 +70,7 @@ class Game
 
   # DEFINE THE CURRENT PLAYER
   def current_player(board)
+    puts count_turns(board)
     count_turns(board).even? ? 'X' : 'O'
   end
 
