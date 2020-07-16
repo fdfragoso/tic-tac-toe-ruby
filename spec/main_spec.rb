@@ -102,5 +102,23 @@ describe Board do
       expect(obj_board.valid_move?(board, 3)).to be nil
     end
   end
+
+  describe '#position_taken' do
+    it 'Return false if the position is not take' do
+      expect(obj_board.position_taken?(board, 8)).to be false
+    end
+
+    it 'Return true if the position is taken' do
+      expect(obj_board.position_taken?(board, 7)).to be true
+    end
+end
+
+describe '#input_to_index' do
+    it 'Return the move index is between 0-8' do
+      expect(obj_board.input_to_index(2)).to eq(1)
+    end
+
+  
+end
 end
   
