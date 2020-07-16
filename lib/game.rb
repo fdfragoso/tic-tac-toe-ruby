@@ -70,7 +70,6 @@ class Game
 
   # DEFINE THE CURRENT PLAYER
   def current_player(board)
-    puts count_turns(board)
     count_turns(board).even? ? 'X' : 'O'
   end
 
