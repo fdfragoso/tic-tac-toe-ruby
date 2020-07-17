@@ -8,8 +8,10 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Made By](https://img.shields.io/badge/Made%20By-Felipe%20Fragoso-brightgreen)](https://github.com/fdfragoso)
 [![Made By](https://img.shields.io/badge/Made%20By-Jane-brightgreen)](https://github.com/Georjane)
+[![Made By](https://img.shields.io/badge/Made%20By-Arafat%20Akata-brightgreen)](https://github.com/haraphat01)
 [![Twitter Follow](https://img.shields.io/twitter/follow/fdfragoso?label=Follow%20Felipe%20on%20Twitter&style=social)](https://twitter.com/fdfragoso)
 [![Twitter Follow](https://img.shields.io/twitter/follow/fdfragoso?label=Follow%20Jane%20on%20Twitter&style=social)](https://twitter.com/WittyJany)
+[![Twitter Follow](https://img.shields.io/twitter/follow/haraphat1?label=Follow%20Arafat%20Akata%20on%20Twitter&style=social)](hhttps://twitter.com/haraphat01)
 
 </div>
 
@@ -35,6 +37,18 @@
 ## 🔧 Built with<a name = "built_using"></a>
 
 - [Ruby](https://rubyonrails.org/) - Ruby;
+- [RSpec](https://rspec.info/) - RSpec
+
+### Prerequisites 
+
+- Ruby installed on local machine
+- Rspec installed on local machine
+- A browser (for usage or repl.it)
+
+### Usage
+
+- Fork/Clone this project to your local machine
+- Run rspec in the terminal of your root directory to run the described tests
 
 ## 🔴 Live Demo
 
@@ -110,6 +124,12 @@ For a detailed explanation, please have a look at this guide.
 - Github: [@fdfragoso](https://github.com/fdfragoso)
 - Twitter: [@fdfragoso](https://twitter.com/fdfragoso)
 - Linkedin: [@fdfragoso](https://www.linkedin.com/in/fdfragoso/)
+
+👤 **Arafat Akata**
+
+- Github: [@haraphat01](https://github.com/haraphat01)
+- Twitter: [@haraphat01](https://twitter.com/haraphat01)
+- Linkedin: [@haraphat01](https://www.linkedin.com/in/arafat-akata/)
 
 ## 🤝 Contributing
 
